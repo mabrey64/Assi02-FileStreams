@@ -10,6 +10,7 @@ public class ReadBinaryFile
         String name;
         long idNum;
         double mpg;
+        int position = 0;
 
         try (FileInputStream fis = new FileInputStream(inFile);
              DataInputStream input = new DataInputStream(fis)) {
@@ -28,6 +29,20 @@ public class ReadBinaryFile
             System.out.println(e.getMessage());
             e.printStackTrace();
             System.exit(0);
+        }
+
+        // the "r" in the RandomAccessFile constructor means read-only. "rw" means read/write
+        try (RandomAccessFile raf = new  RandomAccessFile(inFile, "r"))
+        {
+            raf.seek(position);
+            byte[] data = new byte[100];
+            raf.read(data);
+        }
+        catch (IOException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            System.exit(0);
+
         }
     }
 }
