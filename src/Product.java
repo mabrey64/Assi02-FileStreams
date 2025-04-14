@@ -37,5 +37,37 @@ public class Product
         return ID + ", " + Name + ", " + Description + ", " + Cost;
     }
 
+    /**
+     * All the get methods are used to return the value of the attribute.
+     * @return The value of the attribute.
+     */
+    public String getName() {
+        return Name;
+    }
+
+    /**
+     * The getID method is used to return the value of the ID attribute
+     * @return The value of the ID attribute
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * The getDescription method is used to return the value of the Description attribute
+     * @return The value of the Description attribute
+     */
+    public String getDescription() {
+        return Description;
+    }
+
+    /**
+     * The getCost method is used to return the value of the Cost attribute
+     * @return The value of the Cost attribute
+     */
+    public double getCost() {
+        return Cost;
+    }
+
 
 }

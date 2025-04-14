@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 public class RandProductMaker extends JFrame
 {
-    private JTextField idField, nameField, descriptionField, costField;
+    private JTextField idField, nameField, descriptionField, costField, recordCountField;
     private JPanel buttonPanel;
     private ArrayList<Product> productList;
     public RandProductMaker()
@@ -47,6 +48,11 @@ public class RandProductMaker extends JFrame
         inputPanel.add(new JLabel("Cost:"));
         costField = new JTextField();
         inputPanel.add(costField);
+
+        inputPanel.add(new JLabel("Record Count:"));
+        recordCountField = new JTextField("0");
+        recordCountField.setEditable(false);
+        inputPanel.add(recordCountField);
 
         // Add the input panel to the frame
         add(inputPanel, BorderLayout.CENTER);
@@ -110,17 +116,29 @@ public class RandProductMaker extends JFrame
         Product product = new Product(id, name, description, Double.parseDouble(cost));
         productList.add(product);
 
+        // Update the record count field
+        int recordCount = productList.size();
+        recordCountField.setText(String.valueOf(recordCount));
+
         // Clear the input fields
         clearFields();
     }
 
     public void saveProducts()
     {
-        // Save the products to a file (implementation not shown)
-        // You can use the ProductWriter class to write the product list to a file
-        // For example:
-        // ProductWriter writer = new ProductWriter();
-        // writer.writeProducts(productList);
+        // Save the products to a file (not implemented in this example)
+        try (RandomAccessFile raf = new RandomAccessFile("products.dat", "rw")) {
+            for (Product product : productList) {
+                raf.writeUTF(product.getID());
+                raf.writeUTF(product.getName());
+                raf.writeUTF(product.getDescription());
+                raf.writeDouble(product.getCost());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error saving products: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Products saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void clearFields()
