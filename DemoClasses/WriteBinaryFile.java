@@ -10,7 +10,7 @@ public class WriteBinaryFile
     public static void main (String [] args)
     {
         File workDir = new File(System.getProperty("user.dir"));
-        Path outFile = Paths.get(workDir.getPath() + "\\src\\data.bin");
+        Path outFile = Paths.get(workDir.getPath() + "\\src\\products.dat");
 
         String name = "Devon Mabrey";
         long idNum = 123456789;

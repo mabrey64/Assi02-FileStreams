@@ -37,18 +37,22 @@ public class RandProductMaker extends JFrame
         idField = new JTextField();
         inputPanel.add(idField);
 
+        // Add the labels and text fields to the panel
         inputPanel.add(new JLabel("Name:"));
         nameField = new JTextField();
         inputPanel.add(nameField);
 
+        // Add the labels and text fields to the panel
         inputPanel.add(new JLabel("Description:"));
         descriptionField = new JTextField();
         inputPanel.add(descriptionField);
 
+        // Add the labels and text fields to the panel
         inputPanel.add(new JLabel("Cost:"));
         costField = new JTextField();
         inputPanel.add(costField);
 
+        // Add the labels and text fields to the panel
         inputPanel.add(new JLabel("Record Count:"));
         recordCountField = new JTextField("0");
         recordCountField.setEditable(false);
@@ -66,14 +70,17 @@ public class RandProductMaker extends JFrame
         addButton.addActionListener(e -> addProduct());
         buttonPanel.add(addButton);
 
+        // Create the buttons and add action listeners
         JButton saveButton = new JButton("Save Products");
         saveButton.addActionListener(e -> saveProducts());
         buttonPanel.add(saveButton);
 
+        // Create the buttons and add action listeners
         JButton clearButton = new JButton("Clear");
         clearButton.addActionListener(e -> clearFields());
         buttonPanel.add(clearButton);
 
+        // Create the buttons and add action listeners
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> {
             int response = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
@@ -150,6 +157,10 @@ public class RandProductMaker extends JFrame
         costField.setText("");
     }
 
+    /*
+        * The validateInput method is used to validate the input fields
+        * @return true if the input is valid, false otherwise
+     */
     public boolean validateInput()
     {
         int idLimit = 6;
